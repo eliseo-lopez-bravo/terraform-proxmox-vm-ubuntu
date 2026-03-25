@@ -19,7 +19,7 @@ pipeline {
 		sh 'terraform init'
 	    }
 	}
-	state('Plan'){
+	stage('Plan'){
 	    steps{
                 sh 'terraform plan -var-file=./vars/dev.tfvars -out tfplan'
 	    }
