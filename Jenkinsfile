@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    parameters {
+	booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
+	choice(name: 'action', choices: ['apply', 'destroy'], description: 'Select the action to perform')
+    }
+
     environment {
 	TF_VAR_proxmox_api_token = credentials('proxmox_api_token')
 	TF_VAR_ssh_public_key    = credentials('ssh_public_key')
@@ -28,9 +33,18 @@ pipeline {
                 sh 'terraform plan -var-file=./vars/dev.tfvars -out tfplan'
 	    }
 	}
-        stage('Terraform Destroy') {
+        stage('Terraform Apply') {
             steps {
-                sh 'terraform destroy -var-file=./vars/dev.tfvars -auto-approve'
+		script {
+		    if (params.action == 'apply') {
+		        sh 'terraform ${action} -input=false tfplan'
+		    } else if (params.action == 'destroy') {
+                        sh 'terraform ${action} -auto-approve'
+		    } else {
+			error "Invalid action selected. Please choose either 'apply' or 'destroy'."
+		    }
+
+		}    
             }
         }
     }
