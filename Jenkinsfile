@@ -28,5 +28,10 @@ pipeline {
                 sh 'terraform plan -var-file=./vars/dev.tfvars -out tfplan'
 	    }
 	}
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform apply -auto-approve tfplan'
+            }
+        }
     }
 }
