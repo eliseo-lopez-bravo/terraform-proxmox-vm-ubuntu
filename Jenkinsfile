@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-	TF_VAR_proxmox_api_token = credentials('proxmox-api-token')
-	TF_VAR_ssh_public_key    = credentials('ssh-public-key')
+	TF_VAR_proxmox_api_token = credentials('proxmox_api_token')
+	TF_VAR_ssh_public_key    = credentials('ssh_public_key')
     }
     stages {
         stage('Checkout Code') {
