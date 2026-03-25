@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-    	TF_VAR_proxmox_api_token = credentials('proxmox-api-token')
-    	TF_VAR_ssh_public_key    = credentials('ssh-public-key')
+	TF_VAR_proxmox_api_token = credentials('proxmox-api-token')
+	TF_VAR_ssh_public_key    = credentials('ssh-public-key')
     }
     stages {
         stage('Checkout Code') {
@@ -24,6 +24,7 @@ pipeline {
 	}
 	stage('Plan'){
 	    steps{
+		sh 'export TF_INPUT=false'
                 sh 'terraform plan -var-file=./vars/dev.tfvars -out tfplan'
 	    }
 	}
