@@ -2,4 +2,5 @@
 
 echo "hello, hello"
 hostname
+pwd
 ls -la
