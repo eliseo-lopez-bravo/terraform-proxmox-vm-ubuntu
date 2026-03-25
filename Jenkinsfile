@@ -14,5 +14,15 @@ pipeline {
                 sh './hello.sh'
             }
         }
+	stage('Terraform init'){
+	    steps{
+		sh 'terraform init'
+	    }
+	}
+	state('Plan'){
+	    steps{
+                sh 'terraform plan -var-file=./vars/dev.tfvars -out tfplan'
+	    }
+	}
     }
 }
