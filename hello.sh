@@ -2,3 +2,4 @@
 
 echo "hello, hello"
 hostname
+ls -la
