@@ -16,10 +16,6 @@ pipeline {
             }
         }
 
-        stage('Run Shell Script') {
-            steps {
-            }
-        }
 	stage('Terraform init'){
 	    steps{
 		sh 'terraform init'
