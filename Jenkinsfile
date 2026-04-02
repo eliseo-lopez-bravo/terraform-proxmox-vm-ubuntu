@@ -18,8 +18,6 @@ pipeline {
 
         stage('Run Shell Script') {
             steps {
-                sh 'chmod u+x ./hello.sh'
-                sh './hello.sh'
             }
         }
 	stage('Terraform init'){
@@ -39,7 +37,8 @@ pipeline {
 		    if (params.action == 'apply') {
 		        sh 'terraform ${action} -input=false tfplan'
 		    } else if (params.action == 'destroy') {
-                        sh 'terraform ${action} -var-file=./vars/dev.tfvars -auto-approve'
+#                        sh 'terraform ${action} -var-file=./vars/dev.tfvars -auto-approve'
+                        sh 'terraform ${action} -var-file=./variables.tf -auto-approve'
 		    } else {
 			error "Invalid action selected. Please choose either 'apply' or 'destroy'."
 		    }
