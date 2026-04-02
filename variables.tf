@@ -60,12 +60,12 @@ variable "vm_cores" {
 
 variable "vm_memory_mb" {
   type        = number
-  default     = 2048
+  default     = 4096
 }
 
 variable "vm_disk_gb" {
   type        = number
-  default     = 10
+  default     = 60
 }
 
 variable "bridge" {
