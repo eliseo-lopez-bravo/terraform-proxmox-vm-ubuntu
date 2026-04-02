@@ -24,7 +24,7 @@ pipeline {
 	stage('Plan'){
 	    steps{
 		sh 'export TF_INPUT=false'
-                sh 'terraform ${action} -var-file=./variables.tf -auto-approve'
+                sh 'terraform ${action} -var-file=./vars/dev.tfvars -auto-approve'
 	    }
 	}
         stage('Terraform Apply') {
