@@ -6,11 +6,11 @@ proxmox_insecure = true
 proxmox_node    = "linux-box"
 template_vm_id  = 9000
 vm_id           = 101
-vm_name         = "CoClaw"
+vm_name         = "OpenClaw"
 
 datastore_id    = "local-lvm"
 vm_cores        = 2
-vm_memory_mb    = 4096
+vm_memory_mb    = 10240
 vm_disk_gb      = 60
 
 bridge          = "vmbr0"
